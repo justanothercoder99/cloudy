@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Basket Analysis ML Results</title>
+        <link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/basket_analysis.css') }}">
+    </head>
+    <body>
+        <header>
+            <h1>Basket Analysis Results</h1>
+            {% include 'nav.html' %}
+        </header>
+
+        <main>
+            <section>
+                <h2>Top Product Pairs</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product A</th>
+                            <th>Product B</th>
+                            <th>Frequency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for pair in top_pairs %}
+                        <tr>
+                            <td>{{ pair.Product_A }}</td>
+                            <td>{{ pair.Product_B }}</td>
+                            <td>{{ pair.Frequency }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </section>
+
+            <section>
+                <h2>Model Performance</h2>
+                <pre>
+    Classification Report:
+    {{ model_report['classification_report'] }}
+
+    Accuracy: {{ model_report['accuracy'] }}
+    Precision: {{ model_report['precision'] }}
+    Recall: {{ model_report['recall'] }}
+    F1-Score: {{ model_report['f1_score'] }}
+                </pre>
+            </section>
+        </main>
+
+        {% include 'footer.html' %}
+    </body>
+</html>

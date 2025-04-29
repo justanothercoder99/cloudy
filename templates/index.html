@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>User Registration</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+    </head>
+    <body>
+        <header>
+            <h1>Welcome to the Retail Dashboard</h1>
+            {% include 'nav.html' %}
+        </header>
+
+        <main>
+            <section>
+                <h2>Register</h2>
+
+                <!-- Display welcome message if username is passed from Flask -->
+                {% if username %}
+                    <h3 style="text-align: center;">Welcome, {{ username }}!</h3>
+                    <p style="text-align: center;">Your email is <strong>{{ email }}</strong>.</p>
+                    <p style="text-align: center;">You have successfully registered.</p>
+                {% else %}
+                    <p style="text-align: center;">Please fill in the registration form below.</p>
+                    <form method="POST">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" placeholder="Enter your username" required>
+    
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+    
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+    
+                        <button type="submit">Submit</button>
+                    </form>
+                {% endif %}
+
+                <!-- Registration form -->
+            </section>
+        </main>
+
+        {% include 'footer.html' %}
+    </body>
+</html>

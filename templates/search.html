@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search Data Pulls</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/search.css') }}">
+    </head>
+    <body>
+        <header>
+            {% include 'nav.html' %}
+        </header>
+
+        <main>
+            <h2>Search for Data Pulls</h2>
+            <form method="POST">
+                <label for="hshd_num">Hshd_num:</label>
+                <input type="text" id="hshd_num" name="hshd_num" required>
+                <button type="submit">Search</button>
+            </form>
+
+            {% if results %}
+            <h3>Results:</h3>
+            <div class="table-container">
+                <table>
+                    <tr>
+                        <th>Hshd num</th>
+                        <th>Basket num</th>
+                        <th>Purchase Date</th>
+                        <th>Product num</th>
+                        <th>Department</th>
+                        <th>Commodity</th>
+                        <th>Loyalty</th>
+                        <th>Age range</th>
+                        <th>Marital status</th>
+                        <th>Income range</th>
+                        <th>Homeowner flag</th>
+                        <th>HH composition</th>
+                        <th>HH size</th>
+                        <th>Children</th>
+                        <th>Spend</th>
+                        <th>Units</th>
+                        <th>store region</th>
+                        <th>Week num</th>
+                        <th>Year</th>
+                        <th>Brand Type</th>
+                        <th>Natural organic flag</th>
+                    </tr>
+                    {% for row in results %}
+                    <tr>
+                        <td>{{ row.hshd_num }}</td>
+                        <td>{{ row.basket_num }}</td>
+                        <td>{{ row.purchase_date }}</td>
+                        <td>{{ row.product_num }}</td>
+                        <td>{{ row.department }}</td>
+                        <td>{{ row.commodity }}</td>
+                        <td>{{ row.loyalty_flag }}</td>
+                        <td>{{ row.age_range }}</td>
+                        <td>{{ row.marital_status }}</td>
+                        <td>{{ row.income_range }}</td>
+                        <td>{{ row.homeowner }}</td>
+                        <td>{{ row.hshd_composition }}</td>
+                        <td>{{ row.hh_size }}</td>
+                        <td>{{ row.children }}</td>
+                        <td>{{ row.spend }}</td>
+                        <td>{{ row.units }}</td>
+                        <td>{{ row.store_region }}</td>
+                        <td>{{ row.week_num }}</td>
+                        <td>{{ row.year }}</td>
+                        <td>{{ row.brand_type }}</td>
+                        <td>{{ row.natural_organic_flag }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            {% endif %}
+        </main>
+
+        {% include 'footer.html' %}
+    </body>
+</html>
